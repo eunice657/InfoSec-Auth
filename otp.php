@@ -84,6 +84,7 @@
         <form action="verify_otp.php" method="POST">
             <label for="otp">OTP:</label>
             <input type="text" id="otp" name="otp" required>
+            <input type="hidden" name="otp_type" value="<?php echo $_GET['otp_type']; ?>">
             <button type="submit">Verify</button>
         </form>
         <form action="resend_otp.php" method="POST" class="center">

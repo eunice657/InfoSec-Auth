@@ -9,6 +9,8 @@ CREATE TABLE users (
     username  VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     userpass VARCHAR(255) NOT NULL,
-    emailOtp int(6) DEFAULT NULL,
+    emailOtp INT(6) DEFAULT NULL,
+    otp_sent_at TIMESTAMP NULL, -- Timestamp when OTP was sent
+    otp_expiration_time TIMESTAMP NULL, -- When OTP expires
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>User Registration</title>
     <style>
         body {
@@ -59,6 +60,23 @@
             font-size: 16px;
         }
 
+        .div {
+            text-align: center;
+            
+            font-size: 14px;  
+            color: #555;      
+        }
+
+        .div a {
+            color: #007bff; /* Link color */
+            text-decoration: none; /* Removes underline from link */
+            font-weight: bold; /* Makes link text bold */
+        }
+
+        .div a:hover {
+            text-decoration: underline; /* Underlines link on hover */
+        }
+
         button:hover {
             background-color: #218838;
         }
@@ -83,8 +101,32 @@
         
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
-        
         <button type="submit">Register</button>
+        <div class="div">
+            <p>Already have an account? <a href="login.php">Login</a></p>
+        </div>
     </form>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('msg');
+            if (message) {
+                // Prevent body scroll
+                document.body.style.overflow = "hidden";
+
+                Swal.fire({
+                    title: "Notice",
+                    text: message,
+                    icon: "info",
+                    position: "center",
+                    backdrop: true,
+                    willClose: () => {
+                        // Re-enable scrolling when the alert is closed
+                        document.body.style.overflow = "auto";
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

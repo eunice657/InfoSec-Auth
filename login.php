@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <title>User Login</title>
     <style>
         body {
@@ -29,6 +31,8 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             width: 300px;
+            /* Added margin-bottom for spacing below the form */
+            margin-bottom: 20px; 
         }
 
         label {
@@ -63,6 +67,24 @@
             background-color: #0056b3;
         }
 
+        /* Styles for the "Don't have an account?" div */
+        .div {
+            text-align: center;
+            
+            font-size: 14px;  
+            color: #555;      
+        }
+
+        .div a {
+            color: #007bff; /* Link color */
+            text-decoration: none; /* Removes underline from link */
+            font-weight: bold; /* Makes link text bold */
+        }
+
+        .div a:hover {
+            text-decoration: underline; /* Underlines link on hover */
+        }
+
         /* For smaller screens */
         @media (max-width: 400px) {
             form {
@@ -82,6 +104,35 @@
         <input type="password" id="password" name="password" required>
         
         <button type="submit">Login</button>
+
+        <div class="div">
+        <p>Don't have an account? <a href="register.php">Register</a></p>
+    </div>
     </form>
+    
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('msg');
+            if (message) {
+                // Prevent body scroll
+                document.body.style.overflow = "hidden";
+
+                Swal.fire({
+                    title: "Notice",
+                    text: message,
+                    icon: "info",
+                    position: "center",
+                    backdrop: true,
+                    willClose: () => {
+                        // Re-enable scrolling when the alert is closed
+                        document.body.style.overflow = "auto";
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
